@@ -1,5 +1,7 @@
 package com.api;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
@@ -35,6 +37,17 @@ public class SimpleTests {
     }
     @Test
     void test8(){
+        Assertions.assertTrue(false);
+    }
+
+    @Test
+    @Disabled
+    void test9(){
+        Assertions.assertTrue(false);
+    }
+    @Test
+    @Disabled
+    void test10(){
         Assertions.assertTrue(false);
     }
 }
