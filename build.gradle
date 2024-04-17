@@ -32,11 +32,25 @@ dependencies {
 }
 
 test {
+    systemProperties(System.getProperties())
     useJUnitPlatform()
 }
 
 task smoke_test(type: Test){
+    systemProperties(System.getProperties())
     useJUnitPlatform(){
         includeTags("smoke")
+    }
+}
+task web_test(type: Test){
+    systemProperties(System.getProperties())
+    useJUnitPlatform(){
+        includeTags("web")
+    }
+}
+task prod_test(type: Test){
+    systemProperties(System.getProperties())
+    useJUnitPlatform(){
+        includeTags("prod")
     }
 }
