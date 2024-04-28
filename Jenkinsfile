@@ -9,8 +9,14 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
-            }
+                echo 'Testing prod'
+                bat './gradlew clean prod_test'
+
+                echo 'Testing prod'
+                bat './gradlew clean web_test'
+
+                echo 'Testing prod'
+                bat './gradlew clean web_test'
         }
         stage('Deploy') {
             steps {
