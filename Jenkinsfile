@@ -26,9 +26,9 @@ pipeline {
 
                     echo 'Testing other module'
                     try {
-                        sh './gradlew clean smoke_test'
+                        sh './gradlew clean other_module_test'
                     } catch (err) {
-                        echo "Error occurred while testing smoke: ${err}"
+                        echo "Error occurred while testing other module: ${err}"
                     }
                 }
             }
@@ -36,6 +36,20 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+            }
+        }
+        stage('Allure Report') {
+            steps {
+                script {
+                    // Загрузка плагина Allure
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'build/allure-results']]
+                    ])
+                }
             }
         }
     }
