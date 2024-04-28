@@ -17,6 +17,7 @@ pipeline {
 
                 echo 'Testing prod'
                 bat './gradlew clean web_test'
+            }
         }
         stage('Deploy') {
             steps {
