@@ -26,9 +26,9 @@ pipeline {
 
                     echo 'Testing other module'
                     try {
-                        sh './gradlew clean other_module_test'
+                        sh './gradlew clean smoke_test'
                     } catch (err) {
-                        echo "Error occurred while testing other module: ${err}"
+                        echo "Error occurred while testing smoke: ${err}"
                     }
                 }
             }
