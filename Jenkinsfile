@@ -5,30 +5,17 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh './gradlew build'
             }
         }
         stage('Test') {
             steps {
                 script {
+                    echo 'Running tests...'
                     try {
-                        echo 'Testing prod'
-                        sh './gradlew clean prod_test --ignore-failure'
+                        sh './gradlew clean test'
                     } catch (err) {
-                        echo "Error occurred while testing prod: ${err}"
-                    }
-
-                    try {
-                        echo 'Testing web'
-                        sh './gradlew clean web_test --ignore-failure'
-                    } catch (err) {
-                        echo "Error occurred while testing web: ${err}"
-                    }
-
-                    try {
-                        echo 'Testing other module'
-                        sh './gradlew clean other_module_test --ignore-failure'
-                    } catch (err) {
-                        echo "Error occurred while testing other module: ${err}"
+                        echo "Error occurred while running tests: ${err}"
                     }
                 }
             }
@@ -36,6 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                // Здесь может быть логика для развертывания приложения
             }
         }
         stage('Allure Report') {
