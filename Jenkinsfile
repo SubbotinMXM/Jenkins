@@ -9,26 +9,28 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing prod'
+                script {
+                    echo 'Testing prod'
                     try {
                         sh './gradlew clean prod_test'
                     } catch (err) {
                         echo "Error occurred while testing prod: ${err}"
                     }
 
-                    echo 'Testing prod'
+                    echo 'Testing web'
                     try {
                         sh './gradlew clean web_test'
                     } catch (err) {
                         echo "Error occurred while testing web: ${err}"
                     }
 
-                    echo 'Testing prod'
+                    echo 'Testing other module'
                     try {
-                        sh './gradlew clean web_test'
+                        sh './gradlew clean other_module_test'
                     } catch (err) {
-                        echo "Error occurred while testing web: ${err}"
+                        echo "Error occurred while testing other module: ${err}"
                     }
+                }
             }
         }
         stage('Deploy') {
