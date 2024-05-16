@@ -40,6 +40,9 @@ test {
 }
 
 task smoke_test(type: Test){
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
     systemProperties(System.getProperties())
     useJUnitPlatform(){
         includeTags("smoke")
