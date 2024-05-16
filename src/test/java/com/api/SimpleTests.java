@@ -68,4 +68,5 @@ public class SimpleTests {
     }
 
     // Добавил строку
+    // Добавил 2 строку
 }
